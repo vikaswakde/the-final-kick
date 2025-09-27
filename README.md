@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Final Kick: AI-Powered Code Reviews
 
-## Getting Started
+**The Final Kick** is a GitHub application that provides intelligent, automated code reviews for your pull requests. It acts as an AI-powered senior engineer, analyzing your code to catch bugs, suggest improvements, and ensure best practices, helping you merge with confidence.
 
-First, run the development server:
+## Why The Final Kick?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+In modern software development, code reviews are essential for maintaining high-quality code. However, they can be time-consuming and prone to human error. Junior developers may miss architectural issues, while senior developers are often too busy to provide the deep, consistent feedback every PR deserves.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The Final Kick solves this by leveraging the power of Large Language Models (LLMs) to provide:
+- **Deep, Contextual Analysis:** Unlike simple linters, our tool understands the structure of your code, providing insights on architecture, best practices, and potential edge cases.
+- **Instant Feedback:** Get a detailed review moments after you open a pull request, dramatically speeding up the development cycle.
+- **Consistent Quality:** Ensure every single pull request gets the same high-level of scrutiny, improving the overall quality of your codebase.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How It Works: The Technology
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is a modern, full-stack application built on a cutting-edge technology stack:
 
-## Learn More
+- **Frontend:** [Next.js](https://nextjs.org/) for a fast, server-rendered React application.
+- **Backend & Database:** [Convex](https://www.convex.dev/) provides our real-time database and serverless functions, perfect for handling GitHub webhooks and background analysis jobs.
+- **Authentication:** [Clerk](https://clerk.com/) for secure and simple user authentication, with a primary focus on signing in with GitHub.
+- **Code Analysis:** [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) for parsing source code into an Abstract Syntax Tree (AST).
+- **AI Reasoning:** [Google's Gemini API](https://ai.google.dev/) provides the core intelligence for the code review.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Plan & Roadmap
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+We are building this application in a phased approach to ensure a solid foundation and iterative progress.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+-   **Phase 1: User Authentication (Complete)**
+    -   Configure Clerk for secure GitHub sign-in.
+    -   Integrate Clerk with Convex to manage user identities.
+    -   Build the basic sign-in/sign-out UI in the Next.js frontend.
 
-## Deploy on Vercel
+-   **Phase 2: GitHub App Installation (In Progress)**
+    -   Register our application as a formal GitHub App.
+    -   Build the UI flow for users to install the app on their repositories.
+    -   Securely store installation and repository data in our Convex database.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-   **Phase 3: Webhook Handling & Analysis**
+    -   Create a Convex HTTP action to serve as a webhook endpoint for GitHub.
+    -   Trigger a background job (Convex action) when a `pull_request.opened` event is received.
+    -   Port our core analysis logic (Tree-sitter + Gemini) to run in the Convex backend.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+-   **Phase 4: Posting Reviews**
+    -   Create a Convex action that takes the analysis result and formats it into a Markdown report.
+    -   Use the GitHub API to post this report as a comment on the pull request.
+
+-   **Phase 5: User Dashboard**
+    -   Build a dashboard where users can see their connected repositories and past reviews.
+
+---
+*This project was bootstrapped with `create-next-app` and is being developed with the guidance of an AI assistant* --#IYKYK 
